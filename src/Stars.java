@@ -3,7 +3,10 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 /****************************************************/
-/*  */
+/* The "stars" class simply draws a star to the		*/
+/* screen. The basic concept is that the program	*/
+/* will begin drawing at the given x,y coordinates	*/
+/* and move */
 /****************************************************/
 
 public class Stars extends Shape{
@@ -12,13 +15,21 @@ public class Stars extends Shape{
 	private int midSecX;
 	private int midSecY;
 	int radius[] = {150, 50, 100, 50};
+	public static final int TOTAL_POINTS = 12;
 
 	/**/
 	public Stars(int x, int y){
 		super(x, y);
 	}
 	
-	/**/
+	/* this is the ctor that is used to create a Star shape from the
+	 * PloyDemo driver class. the x,y starting points are submitted
+	 * to the super class (Shape) and the startAngle will determine
+	 * the curve of the star's outer angles. 
+	 * The midSecX and midSecY will set the center of the 'points' 
+	 * of the Star shape. That is to say, there is a starting x,y 
+	 * coordinate and the Star will then have its own "center" with
+	 * a corresponding middle section (midSec) x,y coordinate position. */
 	public Stars(int x, int y, int startAngle, int midSecX, int midSecY){
 		super(x,y);
 		this.startAngle = startAngle;
@@ -26,7 +37,9 @@ public class Stars extends Shape{
 		this.midSecY = midSecY;
 	}
 	
-	/*Getters*/
+	/****************************************************/
+	/* 						Getters						*/
+	/****************************************************/
 	public int getStartAngle(){
 		return startAngle;
 	}
@@ -39,7 +52,9 @@ public class Stars extends Shape{
 		return midSecY;
 	}
 	
-	/*Setters*/
+	/****************************************************/
+	/* 						Setters						*/
+	/****************************************************/
 	public void setStartAngle(int startAngle){
 		if(startAngle > 0){
 			this.startAngle = startAngle;
@@ -48,6 +63,7 @@ public class Stars extends Shape{
 		}
 	}
 	
+	/**/
 	public void setMidSecX(int midSecX){
 		if(midSecX > 0){
 			this.midSecX = midSecX;
@@ -56,6 +72,7 @@ public class Stars extends Shape{
 		}
 	}
 	
+	/**/
 	public void setMidSecY(int midSecY){
 		if(midSecY > 0){
 			this.midSecY = midSecY;
@@ -64,26 +81,31 @@ public class Stars extends Shape{
 		}
 	}
 
-	/* */
+	/****************************************************/
+	/* TEXT HERE */
+	/****************************************************/
 	public void draw(Graphics g){
 		Graphics g2d = (Graphics) g;
 		
 		final int xc = getMidSecX();
 		final int yc = getMidSecY();
 	    
-	    int nPoints = 16;
-	    int[] X = new int[nPoints];
-	    int[] Y = new int[nPoints];
+	    
+	    int[] xs = new int[TOTAL_POINTS];
+	    int[] ys = new int[TOTAL_POINTS];
 
-	    for (double current=0.0; current<nPoints; current++)
+	    //logic here originated from
+	    //https://stackoverflow.com/questions/16327588/how-to-make-star-shape-in-java
+	    //for the x and y coordinate handling for drawing each new "point" on the star
+	    for (int k=0; k<TOTAL_POINTS; k++)
 	    {
-	        int i = (int) current;
-	        double x = Math.cos(current*((2*Math.PI)/10))*radius[i % 4];
-	        double y = Math.sin(current*((2*Math.PI)/10))*radius[i % 4];
+	        int i = (int) k;
+	        double x = Math.cos(k*((2*Math.PI)/10))*radius[i % 4];
+	        double y = Math.sin(k*((2*Math.PI)/10))*radius[i % 4];
 
-	        X[i] = (int) x + xc;
-	        Y[i] = (int) y + yc;
+	        xs[i] = (int) x + xc;
+	        ys[i] = (int) y + yc;
 	    }
-	    g2d.drawPolygon(X, Y, nPoints);
+	    g2d.drawPolygon(xs, ys, TOTAL_POINTS);
 	}
 }
