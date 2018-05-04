@@ -43,6 +43,10 @@ public class Hexagon extends Shape {
 		final int y = getY();
 		final int r = getR();
 
+		//found this logic here. I was missing the casting
+		//and the way to create the offsets for each new
+		//x,y coordinate pair to draw the next line from.
+		//https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjbj_qdruvaAhWJ5YMKHdHSCrsQFgg4MAI&url=http%3A%2F%2Fheuristic.kaist.ac.kr%2Fcylee%2Fxwireless%2FHexagonal%2FHexagon.java&usg=AOvVaw0BfAbJUJL50KkmlHldr52e
 		Polygon p = new Polygon();
 		for (int i=0;i<6;i++){
 			p.addPoint(
