@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 /****************************************************/
 /* This hexagon class actually uses the same values */
@@ -31,20 +32,23 @@ public class Hexagon extends Shape {
 			System.out.println("error setting the radius");
 		}
 	}
-	
-	public double getArea(){
-		
-	}
-	
+
+	/****************************************************/
+	/* TEXT HERE */
+	/****************************************************/
 	public void draw(Graphics g){
 		Graphics g2d = (Graphics) g;
 		
 		final int x = getX();
 		final int y = getY();
 		final int r = getR();
-		
-		for(int i=0;i<6;i++){
-			
-		}
+
+		Polygon p = new Polygon();
+		for (int i=0;i<6;i++){
+			p.addPoint(
+				(int)(x + r * Math.cos(i * 2 * Math.PI / 6)),
+				(int)(y + r * Math.sin(i * 2 * Math.PI / 6)));
+		}    
+		g.drawPolygon(p);
 	}
 }

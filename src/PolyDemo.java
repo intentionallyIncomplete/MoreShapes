@@ -80,11 +80,11 @@ class PolyDemo extends JFrame {
 			 *
 			 *******************************/
 			switch( ( int )(Math.random() * 4) ) {
-			case 0: retVal = new Square( x, y, sideLength);
+			case 0: retVal = new Square( x, y, sideLength); //just here for testing
 			break;
 			case 1: retVal = new Stars(x, y, startAngle, getRandInt(), getRandInt());//Cube( x, y, getRandInt(), getRandInt(), getRandInt() );
 			break;
-			case 2: retVal = new Stars(10,10,10, 10, 10);
+			case 2: retVal = new Hexagon(x,y,getRandInt());
 			break;
 			case 3: retVal = new Stars(getRandInt(),getRandInt(),getRandInt(),getRandInt(),getRandInt());//new Circle( x,y,getRandInt() );////new Cylinder( x,y, getRandInt(), getRandInt() );
 			break;			
