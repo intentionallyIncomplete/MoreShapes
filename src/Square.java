@@ -29,6 +29,15 @@ public class Square extends Shape {
 		return sideLength * sideLength;
 	}
 
+	/* setter for sideLength w/ condition checking */
+	public void setSideLength(int sideLength){
+		if(sideLength > 0){
+			this.sideLength = sideLength;
+		}else{
+			System.out.println("error in setting side length");
+		}
+	}
+	
 	/*overriding the draw method here this will use the 
 	 * Graphics class methods to draw a square to the screen.
 	 * To match the arguments of the class method 
@@ -41,14 +50,5 @@ public class Square extends Shape {
 		final int sideLength = getSideLength();
 
 		g2d.drawRect(x, y, sideLength, sideLength);
-	}
-
-	/* setter for sideLength w/ condition checking */
-	public void setSideLength(int sideLength){
-		if(sideLength > 0){
-			this.sideLength = sideLength;
-		}else{
-			System.out.println("error in setting side length");
-		}
 	}
 }

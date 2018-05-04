@@ -2,15 +2,11 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-/*
- * Class PolyDemo (is a JFrame) and PolyDemoPanel (is a JPanel)
- * 
- * Author: Rob Nash
- */
-
+/****************************************************/
+/* TEXT HERE */
+/****************************************************/
 
 class PolyDemo extends JFrame {
-
 
 	public PolyDemo() {
 		getContentPane().add( new PolyDemoPanel() );
@@ -20,14 +16,13 @@ class PolyDemo extends JFrame {
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
 
-
 	public static void main( String args[] ) {
 		PolyDemo myApp = new PolyDemo();
 	}
 
-
 	//this is our first "inner" or internal class 
-	//the purpose of this class is solely to support the JFrame class above, and I don't want it reused in arbitrary contexts, so by nesting this class here
+	//the purpose of this class is solely to support the JFrame class above, and I don't want it reused in arbitrary contexts
+	//so by nesting this class here
 	//I can indicate the intent a bit more clearly that this class "goes with" the class above it
 	//In general, each class is a separate entity that should be contained in a separate file
 	public class PolyDemoPanel extends JPanel {		
@@ -68,31 +63,30 @@ class PolyDemo extends JFrame {
 			}	
 		}
 
-
 		public int getRandInt() {
 			return ( (int) ( Math.random() * 200 ) );	
 		}
 
 		public Shape getRandShape() {
 			Shape retVal = null;
-//			final int x = getRandInt();
-//			final int y = getRandInt();
-//			final int startAngle = getRandInt();
+			final int x = getRandInt();
+			final int y = getRandInt();
+			final int startAngle = getRandInt();
 //			final int arcAngle = getRandInt();
-//			final int sideLength = getRandInt();
+			final int sideLength = getRandInt();
 
 			/********************************
 			 * Polymorphic extensibility demo
 			 *
 			 *******************************/
 			switch( ( int )(Math.random() * 4) ) {
-			case 0: retVal = new FirstShape(10,10,10,10);//new Square( x, y, getRandInt(), getRandInt() );
+			case 0: retVal = new Square( x, y, sideLength);
 			break;
-			case 1: retVal = new FirstShape(10,10,10,10);//Cube( x, y, getRandInt(), getRandInt(), getRandInt() );
+			case 1: retVal = new Stars(x, y, startAngle, getRandInt(), getRandInt());//Cube( x, y, getRandInt(), getRandInt(), getRandInt() );
 			break;
-			case 2: retVal = new FirstShape(10,10,10,10);
+			case 2: retVal = new Stars(10,10,10, 10, 10);
 			break;
-			case 3: retVal = new FirstShape(10,10,10,10);//new Circle( x,y,getRandInt() );////new Cylinder( x,y, getRandInt(), getRandInt() );
+			case 3: retVal = new Stars(getRandInt(),getRandInt(),getRandInt(),getRandInt(),getRandInt());//new Circle( x,y,getRandInt() );////new Cylinder( x,y, getRandInt(), getRandInt() );
 			break;			
 			}
 			return retVal;
